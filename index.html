@@ -1442,19 +1442,18 @@
             is.push('doc.write("<div class=\'sec\'><div class=\'sec-hdr\'>📈 Tendencia DIFOT — Todos los meses</div><div class=\'sec-body\'>"+svgStr+"<div class=\'leg\'><span>🟢 DIFOT Proveedor</span><span>🔵 - - DIFOT Interno</span></div></div></div>");');
             is.push('doc.write("<div class=\'sec\'><div class=\'sec-hdr\'>📋 DIFOT por Motivo Solped — "+(selMeses.size?[...selMeses].map(mesLabel).join(", "):"Todos los meses")+"</div><div class=\'sec-body\'>"+motivosHTML+"</div></div>");');
             is.push('doc.write("<div class=\'sec\'><div class=\'sec-hdr\'>📅 Líneas por Semana — DIFOT Proveedor</div><div class=\'sec-body\'><div class=\'sems-grid\'>"+semsPDF+"</div></div></div>");');
-            is.push('doc.write("
-<script>
+            is.push('doc.write("<script>
 fetch('datos.json')
-  .then(r => r.json())
-  .then(payload => {
+  .then(function(r){return r.json();})
+  .then(function(payload){
     window.FECHA_ACTUALIZACION = payload.fecha;
-    const el = document.getElementById('fechaActualizacion');
+    var el = document.getElementById('fechaActualizacion');
     if (el) el.textContent = 'Actualizado: ' + payload.fecha;
     if (typeof procesarDatosPrecargados === 'function') {
       procesarDatosPrecargados(payload.filas);
     }
   })
-  .catch(e => console.error('Error cargando datos:', e));
+  .catch(function(e){console.error('Error cargando datos:', e);});
 </script>
 </body></html>");doc.close();');
             is.push('setTimeout(function(){iframe.contentWindow.print();setTimeout(function(){document.body.removeChild(iframe);},1000);},500);');
@@ -1515,19 +1514,18 @@ body{font-family:-apple-system,BlinkMacSystemFont,sans-serif;background:#f5f6f8;
             html += '<div class="chart-box"><h2>📈 Tendencia DIFOT</h2><div id="chartTend"></div></div>';
             html += '<div class="sems"><h2>📅 Líneas por Semana — DIFOT Proveedor</h2><div id="semanas"></div></div>';
             html += '</div>';
-            html += '<scr'+'ipt>'+is.join('\n')+'<\/scr'+'ipt>
-<script>
+            html += '<scr'+'ipt>'+is.join('\n')+'<\/scr'+'ipt><script>
 fetch('datos.json')
-  .then(r => r.json())
-  .then(payload => {
+  .then(function(r){return r.json();})
+  .then(function(payload){
     window.FECHA_ACTUALIZACION = payload.fecha;
-    const el = document.getElementById('fechaActualizacion');
+    var el = document.getElementById('fechaActualizacion');
     if (el) el.textContent = 'Actualizado: ' + payload.fecha;
     if (typeof procesarDatosPrecargados === 'function') {
       procesarDatosPrecargados(payload.filas);
     }
   })
-  .catch(e => console.error('Error cargando datos:', e));
+  .catch(function(e){console.error('Error cargando datos:', e);});
 </script>
 </body></html>';
 
@@ -1643,19 +1641,18 @@ fetch('datos.json')
 
         function toggleDarkMode() { document.body.classList.toggle('dark-mode'); }
     </script>
-
 <script>
 fetch('datos.json')
-  .then(r => r.json())
-  .then(payload => {
+  .then(function(r){return r.json();})
+  .then(function(payload){
     window.FECHA_ACTUALIZACION = payload.fecha;
-    const el = document.getElementById('fechaActualizacion');
+    var el = document.getElementById('fechaActualizacion');
     if (el) el.textContent = 'Actualizado: ' + payload.fecha;
     if (typeof procesarDatosPrecargados === 'function') {
       procesarDatosPrecargados(payload.filas);
     }
   })
-  .catch(e => console.error('Error cargando datos:', e));
+  .catch(function(e){console.error('Error cargando datos:', e);});
 </script>
 </body>
 </html>
